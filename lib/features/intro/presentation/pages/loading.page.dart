@@ -6,9 +6,12 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Loading Page'),
+        child: Text(
+          'Loading Page',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
       ),
     );
   }

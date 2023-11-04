@@ -13,9 +13,12 @@ class SplashPage extends StatelessWidget {
       GoRouter.of(context).go(LoadingPage.route);
     });
 
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Splash Page'),
+        child: Text(
+          'Splash Page',
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        ),
       ),
     );
   }

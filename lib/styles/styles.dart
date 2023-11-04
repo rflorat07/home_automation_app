@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeAutomationStyles {
+  static const String fontFamily = 'Product Sans';
+
   static const TextStyle elevatedButtonTextStyle =
       TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
 
