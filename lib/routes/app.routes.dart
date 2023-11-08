@@ -1,8 +1,12 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/devices/presentation/pages/devices.page.dart';
 import '../features/intro/presentation/pages/loading.page.dart';
 import '../features/intro/presentation/pages/splash.page.dart';
 import '../features/landing/presentation/pages/home.page.dart';
+import '../features/landing/presentation/pages/landing.page.dart';
+import '../features/rooms/presentation/pages/rooms.page.dart';
+import '../features/settings/presentation/pages/settings.page.dart';
 import '../helpers/utils.dart';
 
 class AppRoutes {
@@ -25,12 +29,49 @@ class AppRoutes {
             return const LoadingPage();
           },
         ),
-        GoRoute(
-          parentNavigatorKey: Utils.mainNav,
-          path: HomePage.route,
-          builder: (context, state) {
-            return const HomePage();
+        ShellRoute(
+          navigatorKey: Utils.tabNav,
+          builder: (context, state, child) {
+            return LandingPage(child: child);
           },
+          routes: [
+            GoRoute(
+              parentNavigatorKey: Utils.tabNav,
+              path: HomePage.route,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(
+                  child: HomePage(),
+                );
+              },
+            ),
+            GoRoute(
+              parentNavigatorKey: Utils.tabNav,
+              path: RoomsPage.route,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(
+                  child: RoomsPage(),
+                );
+              },
+            ),
+            GoRoute(
+              parentNavigatorKey: Utils.tabNav,
+              path: DevicesPage.route,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(
+                  child: DevicesPage(),
+                );
+              },
+            ),
+            GoRoute(
+              parentNavigatorKey: Utils.tabNav,
+              path: SettingsPage.route,
+              pageBuilder: (context, state) {
+                return const NoTransitionPage(
+                  child: SettingsPage(),
+                );
+              },
+            ),
+          ],
         ),
       ]);
 }
