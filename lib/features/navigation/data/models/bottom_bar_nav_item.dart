@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import '../../../../helpers/enums.dart';
 
 class BottomBarNavItemModel {
-  final IconData iconOption;
+  final FlickyAnimatedIconOptions iconOption;
   final String label;
   final String route;
   final bool isSelected;
@@ -14,7 +14,7 @@ class BottomBarNavItemModel {
   });
 
   BottomBarNavItemModel copyWith({
-    IconData? iconOption,
+    FlickyAnimatedIconOptions? iconOption,
     String? label,
     String? route,
     bool? isSelected,

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../styles/flicky_icons_icons.dart';
+import '../../../../helpers/enums.dart';
 import '../../../devices/presentation/pages/devices.page.dart';
 import '../../../landing/presentation/pages/home.page.dart';
 import '../../../rooms/presentation/pages/rooms.page.dart';
@@ -11,20 +9,20 @@ class BottomNavBarRepository {
   List<BottomBarNavItemModel> getBottomBarNavItem() {
     return [
       BottomBarNavItemModel(
-        iconOption: Icons.home,
+        iconOption: FlickyAnimatedIconOptions.barhome,
         route: HomePage.route,
         isSelected: true,
       ),
       BottomBarNavItemModel(
-        iconOption: FlickyIcons.room,
+        iconOption: FlickyAnimatedIconOptions.barrooms,
         route: RoomsPage.route,
       ),
       BottomBarNavItemModel(
-        iconOption: FlickyIcons.heater,
+        iconOption: FlickyAnimatedIconOptions.bardevices,
         route: DevicesPage.route,
       ),
       BottomBarNavItemModel(
-        iconOption: Icons.build,
+        iconOption: FlickyAnimatedIconOptions.barsettings,
         route: SettingsPage.route,
       ),
     ];
