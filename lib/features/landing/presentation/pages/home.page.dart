@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../styles/styles.dart';
+import '../widgets/energy_consumption_panel.dart';
 import '../widgets/home_page_header.dart';
 import '../widgets/home_tile_options_panel.dart';
 
@@ -16,13 +17,16 @@ class HomePage extends StatelessWidget {
         Expanded(
           child: Flex(
             direction: Axis.vertical,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              HomePageHeader(),
-              HomeAutomationStyles.mediumVGap,
-              HomeTileOptionsPanel()
+              Expanded(child: HomePageHeader()),
+              HomeAutomationStyles.smallVGap,
+              Expanded(child: HomeTileOptionsPanel()),
             ],
           ),
-        )
+        ),
+        EnergyConsumptionPanel()
       ],
     );
   }

@@ -30,8 +30,9 @@ class HomeTileOptionsPanel extends ConsumerWidget {
             Text(
               'Quick Actions',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold),
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ],
         )
@@ -41,6 +42,10 @@ class HomeTileOptionsPanel extends ConsumerWidget {
             .slideX(
               begin: 0.25,
               end: 0,
+              duration: 0.5.seconds,
+              curve: Curves.easeInOut,
+            )
+            .fadeIn(
               duration: 0.5.seconds,
               curve: Curves.easeInOut,
             ),
@@ -60,7 +65,20 @@ class HomeTileOptionsPanel extends ConsumerWidget {
                           .read(homeTileOptionsVMProvider.notifier)
                           .onTileSelected(selectedTile);
                     }),
-            ],
+            ]
+                .animate(
+                  delay: 200.ms,
+                )
+                .scaleXY(
+                  begin: 0.5,
+                  end: 1,
+                  duration: 0.5.seconds,
+                  curve: Curves.easeInOut,
+                )
+                .fadeIn(
+                  duration: 0.5.seconds,
+                  curve: Curves.easeInOut,
+                ),
           ),
         )
       ],
