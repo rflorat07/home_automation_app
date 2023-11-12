@@ -15,14 +15,20 @@ class HomePage extends StatelessWidget {
       direction: Axis.vertical,
       children: [
         Expanded(
+          flex: 1,
           child: Flex(
             direction: Axis.vertical,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(child: HomePageHeader()),
+              Expanded(
+                flex: 1,
+                child: HomePageHeader(),
+              ),
               HomeAutomationStyles.smallVGap,
-              Expanded(child: HomeTileOptionsPanel()),
+              Expanded(
+                child: HomeTileOptionsPanel(),
+              ),
             ],
           ),
         ),
