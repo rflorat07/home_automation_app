@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../helpers/enums.dart';
 import '../../../shared/widgets/flicky_animated_icons.dart';
 import '../../../shared/widgets/main_page_header.dart';
+import '../../../shared/widgets/warning_message.dart';
 
 class SettingsPage extends StatelessWidget {
   static const String route = "/settings";
@@ -21,7 +22,9 @@ class SettingsPage extends StatelessWidget {
             isSelected: true,
           ),
         ),
-        Spacer(),
+        Expanded(
+          child: WarningMessage(message: 'No available settings'),
+        ),
       ],
     );
   }

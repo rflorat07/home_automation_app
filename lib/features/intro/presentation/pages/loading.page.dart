@@ -132,6 +132,7 @@ class _LoadingPageState extends ConsumerState<LoadingPage> {
           alignment: Alignment.bottomCenter,
           child: SafeArea(
             child: Column(
+              key: ValueKey(loadingMessage),
               mainAxisSize: MainAxisSize.min,
               children: [
                 loadingIcon,
