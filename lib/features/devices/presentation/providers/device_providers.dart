@@ -12,3 +12,7 @@ final deviceListVMProvider =
     StateNotifierProvider<DeviceListViewModel, List<DeviceModel>>((ref) {
   return DeviceListViewModel([], ref);
 });
+
+final selectedDeviceProvider = StateProvider<DeviceModel?>((ref) {
+  return null;
+});

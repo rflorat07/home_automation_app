@@ -13,8 +13,7 @@ class EnergyConsumptionPanel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final energyConsumption = ref.read(energyConsumptionProvider);
 
-    return Expanded(
-        child: Column(
+    return Column(
       children: [
         HomeAutomationStyles.smallVGap,
         Row(
@@ -56,6 +55,6 @@ class EnergyConsumptionPanel extends ConsumerWidget {
           ),
         )
       ],
-    ));
+    );
   }
 }

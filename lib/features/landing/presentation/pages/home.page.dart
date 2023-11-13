@@ -15,14 +15,12 @@ class HomePage extends StatelessWidget {
       direction: Axis.vertical,
       children: [
         Expanded(
-          flex: 1,
           child: Flex(
             direction: Axis.vertical,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
-                flex: 1,
                 child: HomePageHeader(),
               ),
               HomeAutomationStyles.smallVGap,
@@ -32,7 +30,9 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        EnergyConsumptionPanel()
+        Expanded(
+          child: EnergyConsumptionPanel(),
+        ),
       ],
     );
   }

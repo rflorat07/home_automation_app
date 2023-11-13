@@ -23,6 +23,12 @@ class DevicesRepository {
           isSelected: false,
           outlet: 1,
         ),
+        DeviceModel(
+          iconOption: FlickyAnimatedIconOptions.ac,
+          label: 'Room AC',
+          isSelected: false,
+          outlet: 2,
+        ),
       ];
     });
   }
