@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../helpers/enums.dart';
+import '../../../devices/presentation/providers/add_device_providers.dart';
 import '../../../devices/presentation/providers/device_providers.dart';
 import '../providers/loading_page_providers.dart';
 
@@ -24,6 +25,7 @@ class LoadingNotificationViewModel extends StateNotifier<AppLoadingStates> {
     await Future.delayed(const Duration(seconds: 1));
     ref.read(loadingMessageProvider.notifier).state =
         'Loading Outlet Config...';
+    await ref.read(outletListFutureProvider.future);
 
     // perform waiting logic here
     await Future.delayed(const Duration(seconds: 1));

@@ -13,9 +13,9 @@ class DeviceTypeSelectionPanel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final deviceTypes = ref.watch(deviceTypeSelectionVMProvider);
     return SizedBox(
-      height: 140,
+      height: 145,
       child: ListView.builder(
-        padding: const EdgeInsets.only(left: HomeAutomationStyles.mediumSize),
+        padding: const EdgeInsets.only(left: HomeAutomationStyles.smallSize),
         scrollDirection: Axis.horizontal,
         itemCount: deviceTypes.length,
         itemBuilder: (context, index) {
@@ -41,7 +41,11 @@ class DeviceTypeSelectionPanel extends ConsumerWidget {
               borderRadius:
                   BorderRadius.circular(HomeAutomationStyles.smallRadius),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  ref
+                      .read(deviceTypeSelectionVMProvider.notifier)
+                      .onSelectedDeviceType(deviceItem);
+                },
                 child: Padding(
                   padding: HomeAutomationStyles.mediumPadding,
                   child: SizedBox(

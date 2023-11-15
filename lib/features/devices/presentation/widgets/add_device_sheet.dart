@@ -15,7 +15,11 @@ class AddDeviceSheet extends StatelessWidget {
 
     switch (formState) {
       case AddDeviceStates.none:
-        returningWidget = const AddDeviceForm();
+        returningWidget = AddDeviceForm(
+          onSave: () {
+            // perform save form
+          },
+        );
         break;
       case AddDeviceStates.saving:
         // show saving state
