@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../helpers/enums.dart';
 import '../../../../helpers/utils.dart';
+import '../../../devices/presentation/providers/add_device_providers.dart';
 import '../../../devices/presentation/widgets/add_device_sheet.dart';
 import '../../data/models/home_tile_option.dart';
 
@@ -17,7 +18,7 @@ class HomeTileOptionsViewModel extends StateNotifier<List<HomeTileOption>> {
           Utils.mainNav.currentContext!,
           const AddDeviceSheet(),
           onDismissed: () {
-            // reset add device form
+            ref.read(saveAddDeviceProvider.notifier).resetAllValues();
           },
         );
         break;

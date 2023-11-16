@@ -32,4 +32,9 @@ class DeviceListViewModel extends StateNotifier<List<DeviceModel>> {
     ref.read(selectedDeviceProvider.notifier).state =
         state.where((d) => d.outlet == selectedDevice.outlet).first;
   }
+
+  bool deviceExists(String deviceName) {
+    return state.any(
+        (d) => d.label.trim().toLowerCase() == deviceName.trim().toLowerCase());
+  }
 }

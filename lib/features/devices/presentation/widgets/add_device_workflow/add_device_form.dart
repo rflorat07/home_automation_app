@@ -61,7 +61,9 @@ class AddDeviceForm extends ConsumerWidget {
                   controller: deviceNameCtrl,
                   style: textTheme.displayMedium,
                   decoration: InputDecoration(
-                    errorText: null, //'Device name already exists',
+                    errorText: ref.watch(deviceExistsValidatorProvider)
+                        ? 'Device name already exists'
+                        : null,
                     errorStyle:
                         TextStyle(fontSize: 10, color: colorScheme.primary),
                     focusedErrorBorder: UnderlineInputBorder(
