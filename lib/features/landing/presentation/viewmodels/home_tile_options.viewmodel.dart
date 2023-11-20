@@ -18,7 +18,7 @@ class HomeTileOptionsViewModel extends StateNotifier<List<HomeTileOption>> {
           Utils.mainNav.currentContext!,
           const AddDeviceSheet(),
           onDismissed: () {
-            ref.read(saveAddDeviceProvider.notifier).resetAllValues();
+            ref.read(saveAddDeviceVMProvider.notifier).resetAllValues();
           },
         );
         break;

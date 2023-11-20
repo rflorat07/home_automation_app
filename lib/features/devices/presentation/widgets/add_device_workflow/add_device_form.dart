@@ -140,6 +140,14 @@ class AddDeviceForm extends ConsumerWidget {
                     onSave();
                   }
                 : null,
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Theme.of(context)
+                  .colorScheme
+                  .tertiary, // change background color of button
+              backgroundColor: Theme.of(context)
+                  .colorScheme
+                  .primary, // change text color of button
+            ),
             child: const Text('Add Device'),
           ),
         ),

@@ -74,7 +74,7 @@ final formValidatorProvider = Provider<bool>((ref) {
   return isFormValid;
 });
 
-final saveAddDeviceProvider =
+final saveAddDeviceVMProvider =
     StateNotifierProvider<AddDeviceSaveViewModel, AddDeviceStates>((ref) {
   return AddDeviceSaveViewModel(AddDeviceStates.none, ref);
 });

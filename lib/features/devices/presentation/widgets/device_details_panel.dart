@@ -36,65 +36,94 @@ class DeviceDetailsPanel extends ConsumerWidget {
     final selectionColor =
         deviceData.isSelected ? colorScheme.primary : colorScheme.secondary;
 
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(HomeAutomationStyles.smallRadius),
-          color: selectionColor.withOpacity(0.125)),
-      child: Center(
-        child: Padding(
-          padding: HomeAutomationStyles.smallPadding,
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FlickyAnimatedIcons(
-                        icon: deviceData.iconOption,
-                        size: FlickyAnimatedIconSizes.x2large,
-                        isSelected: deviceData.isSelected,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.circular(HomeAutomationStyles.smallRadius),
+                color: selectionColor.withOpacity(0.125)),
+            child: Center(
+              child: Padding(
+                padding: HomeAutomationStyles.smallPadding,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FlickyAnimatedIcons(
+                              icon: deviceData.iconOption,
+                              size: FlickyAnimatedIconSizes.x2large,
+                              isSelected: deviceData.isSelected,
+                            ),
+                            Text(
+                              deviceData.label,
+                              style: textTheme.headlineMedium!
+                                  .copyWith(color: selectionColor),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(
-                        deviceData.label,
-                        style: textTheme.headlineMedium!
-                            .copyWith(color: selectionColor),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        ref
+                            .read(deviceListVMProvider.notifier)
+                            .toggleDevice(deviceData);
+                      },
+                      child: Icon(
+                        deviceData.isSelected
+                            ? Icons.toggle_on
+                            : Icons.toggle_off,
+                        color: selectionColor,
+                        size: HomeAutomationStyles.x2largeIconSize,
                       ),
-                    ],
-                  ),
+                    ),
+                  ]
+                      .animate(
+                        interval: 100.ms,
+                      )
+                      .slideY(
+                        begin: 0.5,
+                        end: 0,
+                        duration: 0.5.seconds,
+                        curve: Curves.easeInOut,
+                      )
+                      .fadeIn(
+                        duration: 0.5.seconds,
+                        curve: Curves.easeInOut,
+                      ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  ref
-                      .read(deviceListVMProvider.notifier)
-                      .toggleDevice(deviceData);
-                },
-                child: Icon(
-                  deviceData.isSelected ? Icons.toggle_on : Icons.toggle_off,
-                  color: selectionColor,
-                  size: HomeAutomationStyles.x2largeIconSize,
-                ),
-              ),
-            ]
-                .animate(
-                  interval: 100.ms,
-                )
-                .slideY(
-                  begin: 0.5,
-                  end: 0,
-                  duration: 0.5.seconds,
-                  curve: Curves.easeInOut,
-                )
-                .fadeIn(
-                  duration: 0.5.seconds,
-                  curve: Curves.easeInOut,
-                ),
+            ),
           ),
         ),
-      ),
+        HomeAutomationStyles.mediumVGap,
+        ElevatedButton(
+          onPressed: !deviceData.isSelected
+              ? () {
+                  ref
+                      .read(deviceListVMProvider.notifier)
+                      .removeDevice(deviceData);
+                }
+              : null,
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Theme.of(context)
+                .colorScheme
+                .tertiary, // change background color of button
+            backgroundColor: Theme.of(context)
+                .colorScheme
+                .primary, // change text color of button
+          ),
+          child: const Text('Remove This Device'),
+        ),
+      ],
     );
   }
 }

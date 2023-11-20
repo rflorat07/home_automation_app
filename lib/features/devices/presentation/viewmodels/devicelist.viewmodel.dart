@@ -37,4 +37,18 @@ class DeviceListViewModel extends StateNotifier<List<DeviceModel>> {
     return state.any(
         (d) => d.label.trim().toLowerCase() == deviceName.trim().toLowerCase());
   }
+
+  void addDevice(DeviceModel device) {
+    state = [...state, device];
+  }
+
+  void removeDevice(DeviceModel deviceToRemove) {
+    GoRouter.of(Utils.mainNav.currentContext!).pop();
+    state = [
+      for (final device in state)
+        if (device != deviceToRemove) device
+    ];
+
+    ref.read(selectedDeviceProvider.notifier).state = null;
+  }
 }
