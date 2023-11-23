@@ -4,7 +4,7 @@ import '../../data/models/device.model.dart';
 import '../../data/repositories/devices.repository.dart';
 import '../viewmodels/devicelist.viewmodel.dart';
 
-final devicesRepositoryProvider = Provider((ref) {
+final deviceRepositoryProvider = Provider((ref) {
   return DevicesRepository(ref);
 });
 

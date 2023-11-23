@@ -1,3 +1,4 @@
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,12 +29,23 @@ class AddDeviceSaveViewModel extends StateNotifier<AddDeviceStates> {
           DeviceModel(
             iconOption: deviceType.iconOption,
             label: label,
-            isSelected: true,
+            isSelected: false,
             outlet: int.parse(outlet!.id),
           ),
         );
 
-    // Save to local storage
+    final saveSuccess = await saveDeviceList();
+
+    if (saveSuccess) {
+      await Future.delayed(const Duration(seconds: 1));
+      state = AddDeviceStates.saved;
+
+      await Future.delayed(const Duration(seconds: 1));
+      GoRouter.of(Utils.mainNav.currentContext!).pop();
+    } else {
+      state = AddDeviceStates.error;
+    }
+
     await Future.delayed(const Duration(seconds: 1));
     state = AddDeviceStates.saved;
 
@@ -42,7 +54,14 @@ class AddDeviceSaveViewModel extends StateNotifier<AddDeviceStates> {
   }
 
   saveDeviceList() async {
-    return Future.value(true);
+    try {
+      await Future.delayed(1.seconds);
+      final updatedList = ref.read(deviceListVMProvider);
+      ref.read(deviceRepositoryProvider).saveDeviceList(updatedList);
+      return Future.value(true);
+    } on Exception {
+      return Future.value(false);
+    }
   }
 
   void resetAllValues() {
