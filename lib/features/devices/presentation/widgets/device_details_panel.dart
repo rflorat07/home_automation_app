@@ -12,6 +12,7 @@ class DeviceDetailsPanel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDeviceSaving = ref.watch(deviceToggleVMProvider);
     final deviceData = ref.watch(selectedDeviceProvider);
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
@@ -71,19 +72,34 @@ class DeviceDetailsPanel extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        ref
-                            .read(deviceListVMProvider.notifier)
-                            .toggleDevice(deviceData);
-                      },
-                      child: Icon(
-                        deviceData.isSelected
-                            ? Icons.toggle_on
-                            : Icons.toggle_off,
-                        color: selectionColor,
-                        size: HomeAutomationStyles.x2largeIconSize,
-                      ),
+                    Expanded(
+                      child: isDeviceSaving
+                          ? const Padding(
+                              padding: HomeAutomationStyles.largePadding,
+                              child: Center(
+                                child: SizedBox(
+                                  width: HomeAutomationStyles.largeIconSize,
+                                  height: HomeAutomationStyles.largeIconSize,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: HomeAutomationStyles.smallSize,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                ref
+                                    .read(deviceToggleVMProvider.notifier)
+                                    .toggleDevice(deviceData);
+                              },
+                              child: Icon(
+                                deviceData.isSelected
+                                    ? Icons.toggle_on
+                                    : Icons.toggle_off,
+                                color: selectionColor,
+                                size: HomeAutomationStyles.x2largeIconSize,
+                              ),
+                            ),
                     ),
                   ]
                       .animate(
@@ -106,7 +122,7 @@ class DeviceDetailsPanel extends ConsumerWidget {
         ),
         HomeAutomationStyles.mediumVGap,
         ElevatedButton(
-          onPressed: !deviceData.isSelected
+          onPressed: !deviceData.isSelected && !isDeviceSaving
               ? () {
                   ref
                       .read(deviceListVMProvider.notifier)
