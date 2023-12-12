@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../helpers/enums.dart';
 import '../../../../styles/styles.dart';
+import '../../../shared/widgets/flicky_animated_icons.dart';
+import '../responsiveness/landing_page_responsive.config.dart';
 
 class HomePageHeader extends StatelessWidget {
   const HomePageHeader({
@@ -10,12 +13,22 @@ class HomePageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final config = LandingPageResponsiveConfig.landingPageConfig(context);
+
     return Padding(
       padding: HomeAutomationStyles.mediumPadding
           .copyWith(bottom: 0, left: HomeAutomationStyles.mediumSize),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          Visibility(
+            visible: config.showBoltOnHeader,
+            child: const FlickyAnimatedIcons(
+              icon: FlickyAnimatedIconOptions.bolt,
+              isSelected: true,
+              size: FlickyAnimatedIconSizes.large,
+            ),
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../styles/styles.dart';
+import '../../../landing/presentation/responsiveness/landing_page_responsive.config.dart';
 import '../../../shared/widgets/flicky_animated_icons.dart';
 import '../providers/navigation_providers.dart';
 
@@ -12,11 +13,13 @@ class HomeAutomationBottomBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final barItems = ref.watch(bottomBarVMProvider);
+    final config = LandingPageResponsiveConfig.landingPageConfig(context);
 
     return Container(
       padding: HomeAutomationStyles.xsmallPadding,
+      color: config.bottomBarBg,
       child: Flex(
-        direction: Axis.horizontal,
+        direction: config.bottomBarDirection,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: barItems
             .map((e) {
