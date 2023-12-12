@@ -14,7 +14,7 @@ class HomeTileOptionsViewModel extends StateNotifier<List<HomeTileOption>> {
   void onTileSelected(HomeTileOption selectedOption) {
     switch (selectedOption.option) {
       case HomeTileOptions.addDevice:
-        Utils.showUIModel(
+        Utils.showUIModal(
           Utils.mainNav.currentContext!,
           const AddDeviceSheet(),
           onDismissed: () {

@@ -17,7 +17,9 @@ class DeviceListViewModel extends StateNotifier<List<DeviceModel>> {
 
   void showDeviceDetails(DeviceModel device) {
     ref.read(selectedDeviceProvider.notifier).state = device;
-    GoRouter.of(Utils.mainNav.currentContext!).push(DeviceDetailsPage.roure);
+    if (Utils.isMobile()) {
+      GoRouter.of(Utils.mainNav.currentContext!).push(DeviceDetailsPage.roure);
+    }
   }
 
   void toggleDevice(DeviceModel selectedDevice) {
@@ -43,7 +45,10 @@ class DeviceListViewModel extends StateNotifier<List<DeviceModel>> {
   }
 
   void removeDevice(DeviceModel deviceToRemove) {
-    GoRouter.of(Utils.mainNav.currentContext!).pop();
+    if (Utils.isMobile()) {
+      GoRouter.of(Utils.mainNav.currentContext!).pop();
+    }
+
     state = [
       for (final device in state)
         if (device != deviceToRemove) device

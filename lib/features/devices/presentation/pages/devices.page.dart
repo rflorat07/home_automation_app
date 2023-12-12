@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../helpers/enums.dart';
+import '../../../../styles/styles.dart';
 import '../../../shared/widgets/flicky_animated_icons.dart';
 import '../../../shared/widgets/main_page_header.dart';
+import '../responsiveness/device_details_responsive.config.dart';
+import '../widgets/device_details_panel.dart';
 import '../widgets/devices_list.dart';
 
 class DevicesPage extends StatelessWidget {
@@ -11,19 +14,51 @@ class DevicesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    final config = DeviceDetailsResponsiveConfig.deviceDetailsConfig(context);
+    const header = MainPageHeader(
+      title: 'My Devices',
+      icon: FlickyAnimatedIcons(
+        icon: FlickyAnimatedIconOptions.bardevices,
+        size: FlickyAnimatedIconSizes.large,
+        isSelected: true,
+      ),
+    );
+
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MainPageHeader(
-          title: 'My Devices',
-          icon: FlickyAnimatedIcons(
-            icon: FlickyAnimatedIconOptions.bardevices,
-            size: FlickyAnimatedIconSizes.large,
-            isSelected: true,
+        Visibility(
+          visible: config.showSingleLayout,
+          replacement: Builder(
+            builder: (context) {
+              return const Expanded(
+                  child: Padding(
+                padding: HomeAutomationStyles.mediumPadding,
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        header,
+                        Expanded(child: DevicesList()),
+                      ],
+                    )),
+                    Expanded(child: DeviceDetailsPanel()),
+                  ],
+                ),
+              ));
+            },
           ),
-        ),
-        Expanded(
-          child: DevicesList(),
+          child: const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                header,
+                DevicesList(),
+              ],
+            ),
+          ),
         ),
       ],
     );
